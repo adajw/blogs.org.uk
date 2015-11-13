@@ -25,7 +25,6 @@ var packageJson = require('./package.json');
 var crypto = require('crypto');
 // var ghPages = require('gulp-gh-pages');
 
-
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
   'ie_mob >= 10',
@@ -129,20 +128,8 @@ gulp.task('lint', function() {
 });
 
 // Optimize images
-<<<<<<< HEAD
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
-    //.pipe($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-    .pipe($.size({title: 'images'}));
-=======
 gulp.task('images', function() {
   return imageOptimizeTask('app/images/**/*', dist('images'));
->>>>>>> upstream/master
 });
 
 // Copy all files at the root level (app)
@@ -302,15 +289,9 @@ gulp.task('serve:dist', ['default'], function() {
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
-<<<<<<< HEAD
-    //https: true,
-    server: 'dist',
-    middleware: [ historyApiFallback() ]
-=======
     // https: true,
     server: dist(),
     middleware: [historyApiFallback()]
->>>>>>> upstream/master
   });
 });
 
@@ -320,17 +301,6 @@ gulp.task('default', ['clean'], function(cb) {
   runSequence(
     ['copy', 'styles'],
     'elements',
-<<<<<<< HEAD
-    ['jshint', 'images', 'fonts', 'html'],
-    'vulcanize','rename-index', 'cache-config',
-    cb);
-});
-
-var cache = require('gulp-cache'); // rm
-
-gulp.task('clearcache', function (done) {
-  return cache.clearAll(done);
-=======
     ['lint', 'images', 'fonts', 'html'],
     'vulcanize', // 'cache-config',
     cb);
@@ -348,7 +318,6 @@ gulp.task('build-deploy-gh-pages', function(cb) {
 gulp.task('deploy-gh-pages', function() {
   return gulp.src('./dist/**/*')
     .pipe($.ghPages());
->>>>>>> upstream/master
 });
 
 // Load tasks for web-component-tester

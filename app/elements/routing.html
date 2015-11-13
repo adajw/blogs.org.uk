@@ -1,4 +1,3 @@
-
 <!--
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
@@ -19,11 +18,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     if (window.location.port === '') {  // if production
       page.base(app.baseUrl.replace(/\/$/, ''));
     }
+
     // Middleware
     function scrollToTop(ctx, next) {
       app.scrollPageToTop();
       next();
     }
+
     // Routes
     page('/', scrollToTop, function() {
       app.route = 'home';
@@ -49,3 +50,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       page.redirect(app.baseUrl);
     });
   });
+</script>
